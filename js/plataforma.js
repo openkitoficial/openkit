@@ -1,3 +1,4 @@
+
 // DOM Elements
 const videoPlayer = document.getElementById('videoPlayer');
 const videoTitle = document.getElementById('videoTitle');
@@ -5,6 +6,7 @@ const lessonNumber = document.getElementById('lessonNumber');
 const lessonDuration = document.getElementById('lessonDuration');
 const lessonItems = document.querySelectorAll('.lesson-item');
 const header = document.querySelector('.header');
+const loadingOverlay = document.getElementById('loadingOverlay');
 
 // Course data and state
 let currentLesson = 1;
@@ -24,6 +26,8 @@ function initializePlatform() {
     const firstLesson = document.querySelector('.lesson-item[data-lesson="1"]');
     if (firstLesson) {
         firstLesson.classList.add('active');
+        // Carrega o primeiro vídeo automaticamente
+        selectLesson(firstLesson);
     }
     
     // Add fade-in animation
@@ -60,8 +64,11 @@ function setupEventListeners() {
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyboardShortcuts);
     
-    // Video events
-    setupVideoEvents();
+    // Video load event
+    videoPlayer.addEventListener('load', hideLoadingOverlay);
+    
+    // Handle window resize
+    window.addEventListener('resize', handleResize);
 }
 
 // Select and load lesson
@@ -83,8 +90,13 @@ function selectLesson(lessonElement) {
     });
     lessonElement.classList.add('active');
     
-    // Update video
-    updateVideo(videoId, title, lessonNum, duration);
+    // Show loading animation
+    showLoadingOverlay();
+    
+    // Update video with delay for loading animation
+    setTimeout(() => {
+        updateVideo(videoId, title, lessonNum, duration);
+    }, 500);
     
     // Update current lesson
     currentLesson = lessonNum;
@@ -100,18 +112,11 @@ function selectLesson(lessonElement) {
 
 // Update video player
 function updateVideo(videoId, title, lessonNum, duration) {
-    // Show loading state
-    showVideoLoading();
-    
     // Update video player source
     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
     
-    // Update player with slight delay for smooth transition
-    setTimeout(() => {
-        videoPlayer.src = embedUrl;
-        videoPlayer.title = title;
-        hideVideoLoading();
-    }, 500);
+    videoPlayer.src = embedUrl;
+    videoPlayer.title = title;
     
     // Update video info
     videoTitle.textContent = title;
@@ -120,27 +125,24 @@ function updateVideo(videoId, title, lessonNum, duration) {
     
     // Update page title
     document.title = `${title} - OpenKit`;
-}
-
-// Show video loading state
-function showVideoLoading() {
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'loading-video';
-    loadingDiv.id = 'videoLoading';
-    loadingDiv.innerHTML = `
-        <div class="loading-spinner"></div>
-        <span>Carregando vídeo...</span>
-    `;
     
-    const container = document.querySelector('.video-player-container');
-    container.appendChild(loadingDiv);
+    // Hide loading after a realistic delay
+    setTimeout(() => {
+        hideLoadingOverlay();
+    }, 2000);
 }
 
-// Hide video loading state
-function hideVideoLoading() {
-    const loadingDiv = document.getElementById('videoLoading');
-    if (loadingDiv) {
-        loadingDiv.remove();
+// Show loading overlay
+function showLoadingOverlay() {
+    if (loadingOverlay) {
+        loadingOverlay.classList.remove('hidden');
+    }
+}
+
+// Hide loading overlay
+function hideLoadingOverlay() {
+    if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
     }
 }
 
@@ -156,6 +158,16 @@ function handleScroll() {
         header.style.background = 'rgba(23, 23, 26, 0.95)';
         header.style.borderBottom = '1px solid rgba(118, 65, 230, 0.1)';
         header.style.boxShadow = 'none';
+    }
+}
+
+// Handle window resize
+function handleResize() {
+    // Adjust layout if needed based on new window size
+    if (window.innerWidth <= 768) {
+        console.log('Mobile layout active');
+    } else {
+        console.log('Desktop layout active');
     }
 }
 
@@ -177,10 +189,8 @@ function handleKeyboardShortcuts(e) {
             break;
         case ' ':
             e.preventDefault();
-            // Toggle video play/pause (YouTube iframe doesn't allow direct control)
             break;
         case 'Escape':
-            // Focus management
             document.activeElement.blur();
             break;
     }
@@ -202,30 +212,6 @@ function navigateLesson(direction) {
     }
 }
 
-// Setup video events for tracking
-function setupVideoEvents() {
-    // Note: Due to YouTube iframe restrictions, we can't directly listen to video events
-    // You might need to use YouTube Player API for advanced video tracking
-    
-    // Basic visibility tracking
-    let videoVisible = false;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.target === videoPlayer) {
-                videoVisible = entry.isIntersecting;
-                if (videoVisible) {
-                    console.log('Video is visible');
-                } else {
-                    console.log('Video is not visible');
-                }
-            }
-        });
-    });
-    
-    observer.observe(videoPlayer);
-}
-
 // Notification system
 function showNotification(message, type = 'info') {
     // Remove existing notifications
@@ -242,35 +228,9 @@ function showNotification(message, type = 'info') {
         info: 'fa-info-circle'
     };
     
-    const colorMap = {
-        success: '#10b981',
-        warning: '#f59e0b',
-        error: '#ef4444',
-        info: '#3b82f6'
-    };
-    
     notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas ${iconMap[type]}"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    // Styling
-    notification.style.cssText = `
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        background: ${colorMap[type]};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        transform: translateX(400px);
-        transition: all 0.3s ease;
-        max-width: 350px;
-        font-family: 'Inter', sans-serif;
+        <i class="fas ${iconMap[type]}"></i>
+        <span>${message}</span>
     `;
     
     // Add to page
@@ -278,12 +238,20 @@ function showNotification(message, type = 'info') {
     
     // Show notification
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        if (window.innerWidth <= 480) {
+            notification.classList.add('show');
+        } else {
+            notification.style.transform = 'translateX(0)';
+        }
     }, 100);
     
     // Auto hide
     setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
+        if (window.innerWidth <= 480) {
+            notification.classList.remove('show');
+        } else {
+            notification.style.transform = 'translateX(400px)';
+        }
         setTimeout(() => {
             if (document.body.contains(notification)) {
                 document.body.removeChild(notification);
@@ -303,85 +271,37 @@ function formatDuration(minutes) {
     }
 }
 
-// Local storage for last watched lesson (optional)
+// Local storage functions (using variables instead for browser compatibility)
+let savedData = {
+    lastLesson: null
+};
+
 function saveLastLesson(lessonNum) {
-    try {
-        localStorage.setItem('openkit_fileserver_last_lesson', lessonNum);
-    } catch (error) {
-        console.log('Could not save lesson to localStorage');
-    }
+    savedData.lastLesson = lessonNum;
+    console.log('Lesson saved:', lessonNum);
 }
 
 function loadLastLesson() {
-    try {
-        const lastLesson = localStorage.getItem('openkit_fileserver_last_lesson');
-        if (lastLesson) {
-            const lessonElement = document.querySelector(`[data-lesson="${lastLesson}"]`);
-            if (lessonElement) {
-                // Don't auto-play, just highlight the last watched lesson
-                setTimeout(() => {
-                    lessonElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 1000);
-            }
+    if (savedData.lastLesson) {
+        const lessonElement = document.querySelector(`[data-lesson="${savedData.lastLesson}"]`);
+        if (lessonElement) {
+            setTimeout(() => {
+                lessonElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1000);
         }
-    } catch (error) {
-        console.log('Could not load lesson from localStorage');
     }
 }
 
-// Load saved lesson on page load
-document.addEventListener('DOMContentLoaded', () => {
-    loadLastLesson();
-});
-
-// Responsive utilities
-function isMobileDevice() {
-    return window.innerWidth <= 768;
-}
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    // Adjust layout if needed
-    if (isMobileDevice()) {
-        console.log('Mobile layout active');
-    } else {
-        console.log('Desktop layout active');
-    }
-});
-
-// Error handling for video loading
+// Error handling
 videoPlayer.addEventListener('error', () => {
     showNotification('Erro ao carregar o vídeo. Tente novamente.', 'error');
-    hideVideoLoading();
+    hideLoadingOverlay();
 });
 
-// Analytics tracking (optional - replace with your analytics service)
+// Track lesson views
 function trackLessonView(lessonNum, lessonTitle) {
-    // Example: Google Analytics, Mixpanel, etc.
     console.log(`Lesson viewed: ${lessonNum} - ${lessonTitle}`);
-    
-    // Uncomment and modify for your analytics service
-    // gtag('event', 'lesson_view', {
-    //     lesson_number: lessonNum,
-    //     lesson_title: lessonTitle,
-    //     course_name: 'File Server Linux'
-    // });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializePlatform();
-    setupEventListeners();
-
-    // Seleciona automaticamente a primeira aula
-    const primeiraAula = document.querySelector('.lesson-item[data-lesson="1"]');
-    if (primeiraAula) {
-        selectLesson(primeiraAula); // chama a função que carrega o vídeo
-    }
-
-    console.log('Plataforma OpenKit carregada com sucesso!');
-});
-
-
-
-
 console.log('OpenKit Platform JavaScript loaded successfully!');
+   
