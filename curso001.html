@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Server Linux - OpenKit</title>
+    <link rel="stylesheet" href="css/plataforma.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+               <a href="/index.html" style="text-decoration: none;"><div class="nav-logo">
+                  <i class="fas fa-cube"></i>
+                    <span>OpenKit</span>
+                </div></a>
+                <div class="nav-actions">
+                    <a href="cursos.html" class="btn-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar aos Cursos
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="course-platform">
+        <div class="platform-container">
+            <!-- Video Player Section -->
+            <div class="video-section">
+                <div class="video-player-container">
+                    <!-- 
+                        ÁREA DO PLAYER DE VÍDEO
+                        Substitua o src="" pelo link do vídeo correspondente do YouTube
+                        Exemplo: https://www.youtube.com/embed/VIDEO_ID
+                    -->
+                    <iframe 
+                        id="videoPlayer" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Introdução ao File Server Linux"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-overlay" id="videoOverlay">
+                        <div class="video-info">
+                            <h1 class="video-title" id="videoTitle">Introdução ao File Server Linux</h1>
+                            <div class="video-meta">
+                                <span class="lesson-number" id="lessonNumber">Aula 1 de 18</span>
+                                <span class="lesson-duration" id="lessonDuration">15 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Header Info -->
+                <div class="course-header">
+                    <h2 class="course-title">File Server Linux</h2>
+                    <div class="course-info">
+                        <div class="info-stats">
+                            <!-- <div class="stat-item">
+                                <i class="fas fa-play-circle"></i>
+                                <span>18 aulas</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <span>6h total</span>
+                            </div> -->
+                            <div class="stat-item">
+                                <i class="fab fa-linux"></i>
+                                <span>Nível Intermediário</span>
+                            </div>
+                        </div>
+                      <!--   <div class="course-description">
+                            Aprenda a configurar e gerenciar servidores de arquivos completos usando Linux, Samba, NFS e ferramentas de backup.
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lessons Sidebar -->
+            <div class="lessons-sidebar">
+                <div class="sidebar-header">
+                    <h3>Conteúdo do Curso</h3>
+                    <span class="total-lessons">18 aulas • 6h total</span>
+                </div>
+
+                <div class="lessons-list">
+                    <!-- 
+                        LISTA DE AULAS
+                        Para cada aula, modifique:
+                        1. data-video="" - Cole o ID do vídeo do YouTube
+                        2. data-title="" - Título da aula
+                        3. data-duration="" - Duração da aula
+                        4. O conteúdo da aula dentro da div
+                    -->
+                    
+                    <!-- Aula 1 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item active" 
+                         data-video="ARNMNQkWQH8" 
+                         data-title="Introdução ao File Server Linux" 
+                         data-duration="15 min"
+                         data-lesson="1">
+                        <div class="lesson-number">1</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Introdução ao File Server Linux</div>
+                            <div class="lesson-duration">15 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 2 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="t9lT6dhfMV0" 
+                         data-title="Configuração do Sistema Base" 
+                         data-duration="20 min"
+                         data-lesson="2">
+                        <div class="lesson-number">2</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Configuração do Sistema Base</div>
+                            <div class="lesson-duration">20 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 3 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Instalação do Samba Server" 
+                         data-duration="25 min"
+                         data-lesson="3">
+                        <div class="lesson-number">3</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Instalação do Samba Server</div>
+                            <div class="lesson-duration">25 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 4 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Configuração de Compartilhamentos" 
+                         data-duration="30 min"
+                         data-lesson="4">
+                        <div class="lesson-number">4</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Configuração de Compartilhamentos</div>
+                            <div class="lesson-duration">30 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 5 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Gerenciamento de Usuários e Grupos" 
+                         data-duration="25 min"
+                         data-lesson="5">
+                        <div class="lesson-number">5</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Gerenciamento de Usuários e Grupos</div>
+                            <div class="lesson-duration">25 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 6 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Permissões e Segurança" 
+                         data-duration="35 min"
+                         data-lesson="6">
+                        <div class="lesson-number">6</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Permissões e Segurança</div>
+                            <div class="lesson-duration">35 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 7 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Configuração do NFS" 
+                         data-duration="20 min"
+                         data-lesson="7">
+                        <div class="lesson-number">7</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Configuração do NFS</div>
+                            <div class="lesson-duration">20 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 8 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Montagem Automática" 
+                         data-duration="15 min"
+                         data-lesson="8">
+                        <div class="lesson-number">8</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Montagem Automática</div>
+                            <div class="lesson-duration">15 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 9 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Servidor FTP com vsftpd" 
+                         data-duration="25 min"
+                         data-lesson="9">
+                        <div class="lesson-number">9</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Servidor FTP com vsftpd</div>
+                            <div class="lesson-duration">25 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 10 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="SSL/TLS no FTP" 
+                         data-duration="20 min"
+                         data-lesson="10">
+                        <div class="lesson-number">10</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">SSL/TLS no FTP</div>
+                            <div class="lesson-duration">20 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 11 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Quotas de Disco" 
+                         data-duration="18 min"
+                         data-lesson="11">
+                        <div class="lesson-number">11</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Quotas de Disco</div>
+                            <div class="lesson-duration">18 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 12 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Monitoramento de Recursos" 
+                         data-duration="22 min"
+                         data-lesson="12">
+                        <div class="lesson-number">12</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Monitoramento de Recursos</div>
+                            <div class="lesson-duration">22 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 13 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Backup Automatizado" 
+                         data-duration="30 min"
+                         data-lesson="13">
+                        <div class="lesson-number">13</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Backup Automatizado</div>
+                            <div class="lesson-duration">30 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 14 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Sincronização com rsync" 
+                         data-duration="25 min"
+                         data-lesson="14">
+                        <div class="lesson-number">14</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Sincronização com rsync</div>
+                            <div class="lesson-duration">25 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 15 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Logs e Troubleshooting" 
+                         data-duration="20 min"
+                         data-lesson="15">
+                        <div class="lesson-number">15</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Logs e Troubleshooting</div>
+                            <div class="lesson-duration">20 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 16 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Performance e Otimização" 
+                         data-duration="25 min"
+                         data-lesson="16">
+                        <div class="lesson-number">16</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Performance e Otimização</div>
+                            <div class="lesson-duration">25 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 17 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Alta Disponibilidade" 
+                         data-duration="30 min"
+                         data-lesson="17">
+                        <div class="lesson-number">17</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Alta Disponibilidade</div>
+                            <div class="lesson-duration">30 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Aula 18 - SUBSTITUA O data-video PELO ID DO VÍDEO DO YOUTUBE -->
+                    <div class="lesson-item" 
+                         data-video="VIDEO_ID_AQUI" 
+                         data-title="Projeto Final" 
+                         data-duration="35 min"
+                         data-lesson="18">
+                        <div class="lesson-number">18</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">Projeto Final</div>
+                            <div class="lesson-duration">35 min</div>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/plataforma.js"></script>
+</body>
+</html>

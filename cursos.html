@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - OpenKit</title>
+    <link rel="stylesheet" href="css/cursos.css">
+        <link rel="stylesheet" href="css/plataforma.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+              
+
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+               <a href="/index.html" style="text-decoration: none;"><div class="nav-logo">
+                  <i class="fa-solid fa-microchip"></i>
+                    <span>OpenKit</span>
+                </div></a>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn-back" style="margin-right: 150px;">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+              
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Courses Section -->
+    <section class="courses" style="margin-top: 10px;">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="hero-title" style="text-align: center;">
+                    Catálogo de <span class="gradient-text">Cursos</span>
+                </h1>
+                <p class="hero-description" style="text-align: center;">
+                    Aprenda gratuítamente uma nova habilidade.
+                </p>
+    
+            </div>
+
+ 
+            
+            
+            <!-- Course Cards Grid -->
+            <div class="courses-grid">
+                <!-- 
+                    ADICIONAR NOVOS CURSOS AQUI:
+                    Para adicionar um novo curso, copie toda a estrutura do course-card 
+                    e modifique os dados conforme necessário
+                -->
+                
+                <!-- Course 1: File Server Linux -->
+                 
+                <div class="course-card" data-course="fileserver-linux" data-course-url="curso001.html">
+                    <div class="course-image">
+                        <img src="/assets/img/proxmox.png" alt="Ubuntu Server" class="course-image-bg">
+                        <div class="course-overlay">
+                            <span class="course-level">Intermediário</span>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Proxmox VE 9.0</h3>
+                        <p class="course-description">
+                            Aprenda o essêncial sobre virtualização de servidores enterprise com Proxmox Virtual Environment.
+                           
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <i class="fas fa-clock"></i>
+                                6 horas
+                            </span>
+                            <span class="course-lessons">
+                                <i class="fas fa-play-circle"></i>
+                                18 aulas
+                            </span>
+                        </div>
+                        <button class="btn btn-primary view-course">
+                            <i class="fas fa-play"></i>
+                            ACESSAR CURSO
+                        </button>
+                    </div>
+                </div>
+                
+
+                <!-- Course 2: Proxmox -->
+                <div class="course-card" data-course="proxmox" data-course-url="curso002.html">
+                    <div class="course-image">
+                        <img src="/assets/img/linux.png" alt="Proxmox VE" class="course-image-bg">
+                        <div class="course-overlay">
+                            <span class="course-level">Avançado</span>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                          <h3 class="course-title">Ubuntu Server</h3>
+                        <p class="course-description">
+Aprenda a instalar e configurar o Ubuntu Server 24.04 LTS de forma prática e descomplicada.</p>
+                      
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <i class="fas fa-clock"></i>
+                                8 horas
+                            </span>
+                            <span class="course-lessons">
+                                <i class="fas fa-play-circle"></i>
+                                24 aulas
+                            </span>
+                        </div>
+                        <button class="btn btn-primary view-course">
+                            <i class="fas fa-play"></i>
+                            ACESSAR CURSO
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 3: GLPI -->
+                <div class="course-card" data-course="glpi" data-course-url="curso003.html">
+                    <div class="course-image">
+                        <img src="/assets/img/zerotier.png" alt="GLPI - Gestão de TI" class="course-image-bg">
+                        <div class="course-overlay">
+                            <span class="course-level">Intermediário</span>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">ZeroTier - VPN</h3>
+                        <p class="course-description">
+                            Aprenda conectar dispositivos remotos com segurança, sem a complicação de uma VPN tradicional.
+                        </p>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <i class="fas fa-clock"></i>
+                                5 horas
+                            </span>
+                            <span class="course-lessons">
+                                <i class="fas fa-play-circle"></i>
+                                15 aulas
+                            </span>
+                        </div>
+                        <button class="btn btn-primary view-course">
+                            <i class="fas fa-play"></i>
+                            ACESSAR CURSO
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Modal -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="course-info">
+                    <div class="course-description-full" id="modalDescription"></div>
+                    <div class="course-details" id="modalDetails"></div>
+                </div>
+                <div class="course-curriculum">
+                    <h3>Conteúdo do Curso</h3>
+                    <div class="lessons-list" id="modalLessons"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary access-course" id="accessCourse">
+                        <i class="fas fa-play"></i>
+                        ACESSAR CURSO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cube"></i>
+                    <span>OpenKit</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="index.html#about">Sobre</a>
+                    <a href="index.html#services">Serviços</a>
+                    <a href="cursos.html">Cursos</a>
+                    <a href="index.html#contact">Contato</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 OpenKit. Todos os direitos reservados. Feito com ❤️ para a comunidade Open Source.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cursos.js"></script>
+</body>
+</html>
